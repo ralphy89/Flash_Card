@@ -1,5 +1,12 @@
 "FlashCard" 
 
+## GIF
+
+![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif)
+
+<img src="https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif" width="250" />
+
+
 
 ## Lab 1
 
