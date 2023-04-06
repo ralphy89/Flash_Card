@@ -10,7 +10,7 @@
 
 
 ### App Walk-though
-![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card1.gif)
+
 <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card1.gif" width=200><br>
 
 ## Required
@@ -29,7 +29,7 @@
 
 ## Lab 1
 
-## ![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif)
+
 <img src="https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif" width="250" />
 
 ## Required
