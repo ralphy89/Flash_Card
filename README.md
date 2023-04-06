@@ -11,7 +11,7 @@
 
 ### App Walk-though
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card1.gif" width=200><br>
 
 ## Required
 - [X] User can click on a ‘+’ button that takes the user to new ‘Add Card Screen’
@@ -29,7 +29,7 @@
 
 ## Lab 1
 
-![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif)
+## ![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif)
 <img src="https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif" width="250" />
 ## Required
 - [x] Create New Project in Android Studio
