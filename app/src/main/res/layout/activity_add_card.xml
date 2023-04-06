@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCardActivity"
+    android:background="@color/teal_400"
+
+    >
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="300sp"
+        android:layout_height="100sp"
+        android:layout_marginLeft="49sp"
+        android:layout_marginTop="130sp"
+        android:hint="Enter question here "
+        android:textColor="@color/white"
+        android:textColorHint="#757575" />
+
+    <EditText
+        android:id="@+id/edit_text1"
+        android:layout_width="300sp"
+        android:layout_height="90sp"
+        android:layout_below="@+id/edit_text"
+        android:layout_marginLeft="49sp"
+        android:hint="Enter answer 1 here"
+        android:textColor="@color/white"
+        android:textColorHint="#757575" />
+
+    <EditText
+        android:id="@+id/edit_text2"
+        android:layout_width="300sp"
+        android:layout_height="90sp"
+        android:layout_below="@+id/edit_text1"
+        android:layout_marginLeft="49sp"
+        android:hint="Enter answer 2 here (Correct Answer)"
+        android:textColor="@color/white"
+        android:textColorHint="#757575"
+
+        />
+
+    <EditText
+        android:id="@+id/edit_text3"
+        android:layout_width="300sp"
+        android:layout_height="90sp"
+        android:layout_below="@+id/edit_text2"
+        android:layout_marginStart="49sp"
+        android:hint="Enter answer 3 here"
+        android:textColor="@color/white"
+        android:textColorHint="#757575" />
+
+
+    <ImageView
+        android:id="@+id/cancel_button"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:src="@drawable/baseline_cancel_24"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20sp"
+        android:layout_marginRight="20sp"
+        />
+
+    <ImageView
+        android:id="@+id/save_button"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:src="@drawable/baseline_check_circle_24"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20sp"
+        android:layout_marginLeft="20sp"
+        />
+
+</RelativeLayout>

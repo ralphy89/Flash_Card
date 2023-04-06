@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Flash_Card</string>
+    <string name="question1">Who is the 44th president of the United States ? </string>
+    <string name="answer1">Barack Obama</string>
+    <string name="answer2">Jovenel Moise</string>
+    <string name="answer3">Donald Trump</string>
+    <string name="todo1">add button</string>
+    <string name="edit_button">edit button</string>
 </resources>

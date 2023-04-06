@@ -1,30 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/teal_400"
+    tools:context=".MainActivity"
+    >
+
+    <ImageView
+        android:id="@+id/add_button"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20sp"
+        android:layout_marginBottom="20sp"
+        android:contentDescription="@string/todo1"
+        android:src="@drawable/baseline_add_24"
+        tools:ignore="RedundantDescriptionCheck"
+        />
+    <ImageView
+        android:id="@+id/edit_button"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20sp"
+        android:layout_marginBottom="30sp"
+        android:contentDescription="@string/edit_button"
+        android:src="@drawable/edit_button1"
+        tools:ignore="RedundantDescriptionCheck"
+        />
 
     <TextView
         android:id="@+id/flashcard_question"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:text="Who is the 44th president of the United States ? "
-        android:gravity="center"
-        android:textSize="40sp"
+        android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
-        />
-    <TextView
-        android:id="@+id/flashcard_answer"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="Barack Obama"
+        android:layout_marginTop="44dp"
         android:gravity="center"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        android:paddingBottom="-10sp"
+        android:text="@string/question1"
+        android:textColor="@color/gray_200"
         android:textSize="40sp"
-        android:visibility="invisible"
-        android:layout_centerVertical="true"
-        android:textColor="@color/teal_200"
-        />
+        tools:ignore="TextSizeCheck" />
 
+    <TextView
+        android:id="@+id/flashcard_answer1"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_below="@id/flashcard_question"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="140sp"
+
+        android:background="@color/teal_100"
+        android:gravity="center"
+        android:text="@string/answer1"
+        android:textColor="@color/gray_200"
+        android:textSize="40sp"
+        android:visibility="visible"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/flashcard_answer2"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_below="@id/flashcard_answer1"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10sp"
+        android:background="@color/teal_100"
+        android:gravity="center"
+        android:text="@string/answer2"
+        android:textColor="@color/gray_200"
+        android:textSize="40sp"
+        android:visibility="visible"
+        tools:ignore="TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/flashcard_answer3"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_below="@id/flashcard_answer2"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="10sp"
+        android:background="@color/teal_100"
+        android:gravity="center"
+        android:text="@string/answer3"
+        android:textColor="@color/gray_200"
+        android:textSize="40sp"
+        android:visibility="visible"
+        tools:ignore="TextSizeCheck" />
 </RelativeLayout>
