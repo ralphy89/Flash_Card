@@ -10,7 +10,7 @@
 
 
 ### App Walk-though
-
+![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card1.gif)
 <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card1.gif" width=200><br>
 
 ## Required
@@ -31,7 +31,9 @@
 
 ## ![x](https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif)
 <img src="https://github.com/ralphy89/Flash_Card/raw/main/flash_card.gif" width="250" />
+
 ## Required
+
 - [x] Create New Project in Android Studio
 - [x] Add a view for the front side of the flashcard to display the question
 - [x] Add a view for the back side of the flashcard to display the answer
