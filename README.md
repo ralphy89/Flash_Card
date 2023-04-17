@@ -10,7 +10,7 @@
 ### App Walk-though
 
 <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true" width=200><br>
-<img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_delete.gif?raw=true" width=200><br>
+<img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true" width=200><br>
 
 
 ## Required
