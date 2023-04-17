@@ -14,6 +14,10 @@
     <td><img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true" width="200"></td>
     <td><img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true" width="200"></td>
   </tr>
+  <tr>
+    <td align="center"><b>Add/Edit Flash Card</b></td>
+    <td align="center"><b>Delete Flash Card</b></td>
+  </tr>
 </table>
 
 
