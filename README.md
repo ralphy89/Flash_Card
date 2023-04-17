@@ -12,7 +12,7 @@
 <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true" width=200>
 <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true" width=200><br>
 
-| ![]("https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true") | ![]("https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true") |
+| ![X]("https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true") | ![X]("https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true") |
 
 ## Required
 - [X] User can create a card and still see their created card when the app is relaunched.
