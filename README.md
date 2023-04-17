@@ -9,12 +9,12 @@
 
 ### App Walk-though
 
-<div style="display: inline-block;">
-    <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true" width=200>
-</div>
-<div style="display: inline-block;">
-    <img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true" width=200>
-</div>
+<table>
+  <tr>
+    <td><img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card2_add_edit.gif?raw=true" width="200"></td>
+    <td><img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3_delete.gif?raw=true" width="200"></td>
+  </tr>
+</table>
 
 
 
