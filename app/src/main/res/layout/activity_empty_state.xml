@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmptyStateActivity">
+
+    <ImageView
+        android:id="@+id/BackgroundImageEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/bg_image"
+        android:src="@drawable/bg_image_2" />
+
+    <ImageView
+        android:id="@+id/add_new_card"
+        android:layout_width="240sp"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/bg_image"
+        android:src="@drawable/add_new_card_button"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="550sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10990dp"
+        android:layout_marginBottom="30sp"
+        />
+
+</RelativeLayout>

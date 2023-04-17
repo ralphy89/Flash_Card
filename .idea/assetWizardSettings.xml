@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsround/edit/round_edit_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/delete_forever/baseline_delete_forever_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,9 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="d6e5e0" />
-                            <entry key="opacityPercent" value="70" />
-                            <entry key="outputName" value="round_edit_24" />
+                            <entry key="color" value="c23f3f" />
+                            <entry key="opacityPercent" value="80" />
+                            <entry key="outputName" value="baseline_delete_forever_24" />
                             <entry key="sourceFile" value="C:\Users\89ZONE\Documents\Courses\UNIQ\UNIQ2023J\Developpement Mobile\Flash_Card" />
                           </map>
                         </option>

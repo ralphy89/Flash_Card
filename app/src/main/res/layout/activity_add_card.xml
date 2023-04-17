@@ -8,7 +8,12 @@
     android:background="@color/teal_400"
 
     >
-
+    <ImageView
+        android:id="@+id/BackgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_flashcard"
+        android:contentDescription="@string/bg_image" />
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="300sp"
@@ -34,7 +39,7 @@
         android:layout_width="300sp"
         android:layout_height="90sp"
         android:layout_below="@+id/edit_text1"
-        android:layout_marginLeft="49sp"
+        android:layout_marginStart="49sp"
         android:hint="Enter answer 2 here (Correct Answer)"
         android:textColor="@color/white"
         android:textColorHint="#757575"
@@ -60,7 +65,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20sp"
-        android:layout_marginRight="20sp"
+        android:layout_marginEnd="20sp"
         />
 
     <ImageView
@@ -71,7 +76,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="20sp"
+        android:layout_marginStart="20sp"
         />
 
 </RelativeLayout>

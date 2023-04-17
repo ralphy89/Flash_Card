@@ -5,5 +5,7 @@
     <string name="answer2">Jovenel Moise</string>
     <string name="answer3">Donald Trump</string>
     <string name="todo1">add button</string>
+    <string name="bg_image">Background Image</string>
     <string name="edit_button">edit button</string>
+    <string name="next_button">next button</string>
 </resources>
