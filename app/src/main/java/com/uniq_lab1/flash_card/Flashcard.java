@@ -25,8 +25,8 @@ public class Flashcard {
 
     public Flashcard(String question, String answer, String wrongAnswer1, String wrongAnswer2) {
         this.question = question;
-        this.answer = answer;
-        this.wrongAnswer1 = wrongAnswer1;
+        this.answer = wrongAnswer1;
+        this.wrongAnswer1 = answer;
         this.wrongAnswer2 = wrongAnswer2;
     }
 

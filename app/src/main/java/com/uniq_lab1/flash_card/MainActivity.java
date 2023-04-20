@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected Flashcard card_to_edit;
     protected UniqueNumberGenerator random, defaultt;
     protected int state = 1, state2 = 0, state3 = 0; // variable to controle the state of random int generator
-
+    protected String correct_answer = "", user_answer = "", answer_2, answer_3, default_correct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         TextView answerText2 = findViewById(R.id.flashcard_answer2);
         TextView answerText3 = findViewById(R.id.flashcard_answer3);
 
+
+
         ImageView add_button = findViewById(R.id.add_button);
         ImageView edit_button = findViewById(R.id.edit_button);
         ImageView next_button_right = findViewById(R.id.next_button_right);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         answerText1.setText(flashCard_array.get(0).getAnswer());
         answerText2.setText(flashCard_array.get(0).getWrongAnswer1());
         answerText3.setText(flashCard_array.get(0).getWrongAnswer2());
-
+        default_correct = answerText1.getText().toString();
         if(flashCard_array.size() == 1)
         {
             next_button_right.setVisibility(View.INVISIBLE);
@@ -105,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                         card_to_edit.answer = answer1;
                         card_to_edit.wrongAnswer1 = answer2;
                         card_to_edit.wrongAnswer2 = answer3;
-
                         flashCard_database.updateCard(card_to_edit);
                         flashCard_array.add(current_display_index, card_to_edit);
                         flashCard_array.remove(current_display_index + 1);
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                         ) {
                             next_button_right.setVisibility(View.INVISIBLE);
                             // Save newly created/updated flashcard to database
-                            Flashcard flashcard = new Flashcard(question, answer1, answer2, answer3);
+                            Flashcard flashcard = new Flashcard(question, answer2, answer1, answer3);
                             flashCard_database.insertCard(flashcard);
                             // Update set of flashcards to include new card
                             flashCard_array.add(flashcard);
@@ -163,28 +164,95 @@ public class MainActivity extends AppCompatActivity {
 
         answerText1.setOnClickListener(view -> {
 
-            Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
-                    Toast.LENGTH_SHORT).show();
-            answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
-            answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
-            answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+
+            correct_answer = flashCard_array.get(current_display_index).answer;
+            user_answer = answerText1.getText().toString();
+            answer_2 = answerText2.getText().toString();
+            answer_3 = answerText3.getText().toString();
+            if (correct_answer.equals(user_answer) || default_correct.equals(user_answer)) {
+                Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
+                        Toast.LENGTH_SHORT).show();
+                answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            }
+            else {
+                Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
+                        Toast.LENGTH_SHORT).show();
+                if(correct_answer.equals(answer_2))
+                {
+                    answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
+                    answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                    answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                }
+                else
+                {
+                    answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
+                    answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                    answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                }
+            }
         });
 
         answerText2.setOnClickListener(view -> {
 
-            Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
-                    Toast.LENGTH_SHORT).show();
-            answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
-            answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
-            answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            correct_answer = flashCard_array.get(current_display_index).answer;
+            user_answer = answerText2.getText().toString();
+            answer_2 = answerText1.getText().toString();
+            answer_3 = answerText3.getText().toString();
+            if (correct_answer.equals(user_answer) || default_correct.equals(user_answer)) {
+                Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
+                        Toast.LENGTH_SHORT).show();
+                answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            }
+            else {
+                Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
+                        Toast.LENGTH_SHORT).show();
+                if(correct_answer.equals(answer_2))
+                {
+                    answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                    answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
+                    answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                }
+                else
+                {
+                    answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                    answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
+                    answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                }
+            }
         });
 
         answerText3.setOnClickListener(view -> {
-            Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
-                    Toast.LENGTH_SHORT).show();
-            answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
-            answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
-            answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            correct_answer = flashCard_array.get(current_display_index).answer;
+            user_answer = answerText3.getText().toString();
+            answer_2 = answerText2.getText().toString();
+            answer_3 = answerText1.getText().toString();
+            if (correct_answer.equals(user_answer) || default_correct.equals(user_answer)) {
+                Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
+                        Toast.LENGTH_SHORT).show();
+                answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+            }
+            else {
+                Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
+                        Toast.LENGTH_SHORT).show();
+                if(correct_answer.equals(answer_3))
+                {
+                    answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                    answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                    answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
+                }
+                else
+                {
+                    answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                    answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
+                    answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.red_100));
+                }
+            }
         });
 
         add_button.setOnClickListener(view -> {
@@ -261,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         next_button_right.setOnClickListener(view -> {
+
             state += 1;
             if (flashCard_array.size() == 0) {
                 // return here, so that the rest of the code in this onClickListener doesn't execute
@@ -286,6 +355,9 @@ public class MainActivity extends AppCompatActivity {
                 answerText2.setText(answer2);
                 answerText3.setText(answer3);
                 System.out.println("\n\n**************\n  Number " + current_display_index + "\n***************\n\n");
+                answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
             }
 
            else {
@@ -326,6 +398,9 @@ public class MainActivity extends AppCompatActivity {
             answerText3.setText(answer3);
             next_button_left.setVisibility(View.INVISIBLE);
             next_button_right.setVisibility(View.VISIBLE);
+            answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
 
         });
     }
