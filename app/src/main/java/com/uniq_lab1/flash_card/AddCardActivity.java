@@ -44,8 +44,8 @@ public class AddCardActivity extends AppCompatActivity {
         }
 
         cancel_img.setOnClickListener(view -> {
-            // Intent intent1 = new Intent(AddCardActivity.this, MainActivity.class);
             finish();
+            overridePendingTransition(R.anim.left_in, R.anim.right_out);
         });
         save_img.setOnClickListener(view -> {
             String quest, ans1, ans2, ans3;
@@ -68,6 +68,7 @@ public class AddCardActivity extends AppCompatActivity {
                 intent.putExtra("answer3", ans3);
                 setResult(Activity.RESULT_OK, intent);
                 finish();
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 

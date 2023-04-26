@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,13 +35,20 @@ public class MainActivity extends AppCompatActivity {
     protected int current_display_index = 0;
     protected int edit = 0; //  If this = 1, the DB update the value , else continue
     protected Flashcard card_to_edit;
-    protected UniqueNumberGenerator random, defaultt;
-    protected int state = 1, state2 = 0, state3 = 0; // variable to controle the state of random int generator
+    protected UniqueNumberGenerator random, defaultt, random_index;
+    protected int state = 1, state2 = 0, state3 = 0, state4 = 0; // variable to controle the state of random int generator
+    protected CountDownTimer countDownTimer = null;
+
     protected String correct_answer = "", user_answer = "", answer_2, answer_3, default_correct;
+    private void startTimer() {
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        countDownTimer.start();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         flashCard_database = new FlashcardDatabase(this);
         flashCard_database.initFirstCard(); // Add the default card
@@ -46,15 +56,18 @@ public class MainActivity extends AppCompatActivity {
 
         random = new UniqueNumberGenerator(1, flashCard_array.size()-1);
         defaultt = new UniqueNumberGenerator(0, flashCard_array.size() - 1);
+        random_index = new UniqueNumberGenerator(0, 2);
 
-        int def = defaultt.getNextNumber();
-        current_display_index = def;
+
+        Animation leftOutAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left_out);
+        Animation rightInAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right_in);
+        Animation leftInAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left_in);
 
         TextView questionText = findViewById(R.id.flashcard_question);
         TextView answerText1 = findViewById(R.id.flashcard_answer1);
         TextView answerText2 = findViewById(R.id.flashcard_answer2);
         TextView answerText3 = findViewById(R.id.flashcard_answer3);
-
+        TextView timerTextView = findViewById(R.id.timer);
 
 
         ImageView add_button = findViewById(R.id.add_button);
@@ -68,11 +81,27 @@ public class MainActivity extends AppCompatActivity {
         answerText2.setText(flashCard_array.get(0).getWrongAnswer1());
         answerText3.setText(flashCard_array.get(0).getWrongAnswer2());
         default_correct = answerText1.getText().toString();
+
+        if (countDownTimer == null) {
+            countDownTimer = new CountDownTimer(16000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    // Define onTick logic here
+                    timerTextView.setText("" + millisUntilFinished / 1000);
+                }
+
+                @Override
+                public void onFinish() {
+                    next_button_right.performClick();
+                }
+            };
+        }
+
+        countDownTimer.start();
         if(flashCard_array.size() == 1)
         {
             next_button_right.setVisibility(View.INVISIBLE);
         }
-        //TextView [] list_answer = {answerText1, answerText2, answerText3};
         // Edit Launcher
         ActivityResultLauncher<Intent> editResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -100,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
                         answerText1.setText(answer2);
                         answerText2.setText(answer1);
                         answerText3.setText(answer3);
-
+                        //default_correct = answer2;
                         card_to_edit = flashCard_database.getAllCards().get(current_display_index);
 
                         card_to_edit.question = question;
-                        card_to_edit.answer = answer1;
-                        card_to_edit.wrongAnswer1 = answer2;
+                        card_to_edit.answer = answer2;
+                        card_to_edit.wrongAnswer1 = answer1;
                         card_to_edit.wrongAnswer2 = answer3;
                         flashCard_database.updateCard(card_to_edit);
                         flashCard_array.add(current_display_index, card_to_edit);
@@ -162,6 +191,22 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        leftOutAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // This method is called when the animation first starts.
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // This method is called when the animation is finished playing.
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // We don't need to worry about this method.
+            }
+        });
         answerText1.setOnClickListener(view -> {
 
 
@@ -208,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                 answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
             }
             else {
-                Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
+                Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer :",
                         Toast.LENGTH_SHORT).show();
                 if(correct_answer.equals(answer_2))
                 {
@@ -265,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent1 = new Intent(MainActivity.this, AddCardActivity.class);
 
             activityResultLauncher.launch(intent1);
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         });
 
         edit_button.setOnClickListener(view -> {
@@ -316,15 +362,21 @@ public class MainActivity extends AppCompatActivity {
                 //flashCard_array.addAll(flashCard_database.getAllCards());
                 random_card = random.nextInt(flashCard_array.size());
                 current_display_index = random_card;
-
-                System.out.println("\n\n\n************\n                              " +
-                        "INDEX : " + current_display_index + "\n                      " +
-                        "             SIZE  : " + flashCard_array.size() + "\n***********\n\n\n");
+                questionText.setAnimation(rightInAnim);
                 questionText.setText(flashCard_array.get(current_display_index).getQuestion());
+
+                answerText1.setAnimation(rightInAnim);
                 answerText1.setText(flashCard_array.get(current_display_index).getAnswer());
+
+                answerText2.setAnimation(rightInAnim);
                 answerText2.setText(flashCard_array.get(current_display_index).getWrongAnswer1());
+
+                answerText3.setAnimation(rightInAnim);
                 answerText3.setText(flashCard_array.get(current_display_index).getWrongAnswer2());
             }
+            answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+            answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
 
         });
 
@@ -339,9 +391,10 @@ public class MainActivity extends AppCompatActivity {
             }
             // Display Random Card
             if (state <= flashCard_array.size()) {
-
+                countDownTimer.start();
                 current_display_index = random.getNextNumber();
-
+                ArrayList<Integer> answers_index = new ArrayList<>();
+                ArrayList<String> list_answers = new ArrayList<>();
                 // set the question and answers TextViews with data from the database
 
                 Flashcard flash_card = flashCard_array.get(current_display_index);
@@ -349,15 +402,26 @@ public class MainActivity extends AppCompatActivity {
                 String answer1 = flash_card.getAnswer();
                 String answer2 = flash_card.getWrongAnswer1();
                 String answer3 = flash_card.getWrongAnswer2();
+                list_answers.add(answer1);
+                list_answers.add(answer2);
+                list_answers.add(answer3);
+                questionText.startAnimation(rightInAnim);
 
                 questionText.setText(question);
-                answerText1.setText(answer1);
-                answerText2.setText(answer2);
-                answerText3.setText(answer3);
+                answerText1.setAnimation(rightInAnim);
+                answerText1.setText(list_answers.get(random_index.getNextNumber()));
+
+                answerText2.setAnimation(rightInAnim);
+                answerText2.setText(list_answers.get(random_index.getNextNumber()));
+
+                answerText3.setAnimation(rightInAnim);
+                answerText3.setText(list_answers.get(random_index.getNextNumber()));
+                random_index = new UniqueNumberGenerator(0, 2);
                 System.out.println("\n\n**************\n  Number " + current_display_index + "\n***************\n\n");
                 answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
                 answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
                 answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+
             }
 
            else {
@@ -391,10 +455,16 @@ public class MainActivity extends AppCompatActivity {
             String answer1 = flash_card.getAnswer();
             String answer2 = flash_card.getWrongAnswer1();
             String answer3 = flash_card.getWrongAnswer2();
-
+            questionText.setAnimation(leftInAnim);
             questionText.setText(question);
+
+            answerText1.setAnimation(leftInAnim);
             answerText1.setText(answer1);
+
+            answerText2.setAnimation(leftInAnim);
             answerText2.setText(answer2);
+
+            answerText3.setAnimation(leftInAnim);
             answerText3.setText(answer3);
             next_button_left.setVisibility(View.INVISIBLE);
             next_button_right.setVisibility(View.VISIBLE);
