@@ -3,11 +3,11 @@ package com.uniq_lab1.flash_card;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -19,14 +19,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.github.jinatonic.confetti.CommonConfetti;
+import com.github.jinatonic.confetti.ConfettiManager;
+import com.github.jinatonic.confetti.ConfettiSource;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
-import java.util.RandomAccess;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected UniqueNumberGenerator random, defaultt, random_index;
     protected int state = 1, state2 = 0, state3 = 0, state4 = 0; // variable to controle the state of random int generator
     protected CountDownTimer countDownTimer = null;
-
+    protected int[] location = new int[2];
     protected String correct_answer = "", user_answer = "", answer_2, answer_3, default_correct;
     private void startTimer() {
         if (countDownTimer != null) {
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         defaultt = new UniqueNumberGenerator(0, flashCard_array.size() - 1);
         random_index = new UniqueNumberGenerator(0, 2);
 
+        ViewGroup container = findViewById(R.id.main_activity_layout);
 
         Animation leftOutAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.left_out);
         Animation rightInAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.right_in);
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         });
         answerText1.setOnClickListener(view -> {
 
-
+            answerText1.getLocationInWindow(location);
             correct_answer = flashCard_array.get(current_display_index).answer;
             user_answer = answerText1.getText().toString();
             answer_2 = answerText2.getText().toString();
@@ -217,9 +217,15 @@ public class MainActivity extends AppCompatActivity {
             if (correct_answer.equals(user_answer) || default_correct.equals(user_answer)) {
                 Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
                         Toast.LENGTH_SHORT).show();
+                for(int i = 400; i < 1400; i+=400) {
+                    CommonConfetti.explosion(container, location[0] + i, location[1] - 300, new int[]{Color.GREEN})
+                            .oneShot();
+                }
                 answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
                 answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
                 answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
+                countDownTimer.cancel();
+
             }
             else {
                 Toast.makeText(MainActivity.this, "OUPS !! Wrong Answer",
@@ -241,6 +247,7 @@ public class MainActivity extends AppCompatActivity {
 
         answerText2.setOnClickListener(view -> {
 
+            answerText2.getLocationInWindow(location);
             correct_answer = flashCard_array.get(current_display_index).answer;
             user_answer = answerText2.getText().toString();
             answer_2 = answerText1.getText().toString();
@@ -248,6 +255,10 @@ public class MainActivity extends AppCompatActivity {
             if (correct_answer.equals(user_answer) || default_correct.equals(user_answer)) {
                 Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
                         Toast.LENGTH_SHORT).show();
+                for(int i = 400; i < 1400; i+=400) {
+                    CommonConfetti.explosion(container, location[0] + i, location[1] - 300, new int[]{Color.GREEN})
+                            .oneShot();
+                }
                 answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
                 answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
                 answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
@@ -271,6 +282,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         answerText3.setOnClickListener(view -> {
+            answerText3.getLocationInWindow(location);
             correct_answer = flashCard_array.get(current_display_index).answer;
             user_answer = answerText3.getText().toString();
             answer_2 = answerText2.getText().toString();
@@ -278,6 +290,10 @@ public class MainActivity extends AppCompatActivity {
             if (correct_answer.equals(user_answer) || default_correct.equals(user_answer)) {
                 Toast.makeText(MainActivity.this, "Bravo !! Correct Answer",
                         Toast.LENGTH_SHORT).show();
+                for(int i = 400; i < 1400; i+=400) {
+                    CommonConfetti.explosion(container, location[0] + i, location[1] - 300, new int[]{Color.GREEN})
+                            .oneShot();
+                }
                 answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
                 answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
                 answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.green_100));
