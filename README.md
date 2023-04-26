@@ -7,9 +7,8 @@
 ## Lab 4
 
 
-<img src="YOUR_GIF_URL_HERE" width=200><br>
+<img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3.gif" width=200><br>
 
-`TODO://` In the User stories section below, add an `x` between the `-[ ]` like this `- [x]` for any user story you complete. (☝️ Remove this paragraph after after checking off user stories)
 
 ## Required
 - [X] User sees a transition animation when going from the main screen to the add card screen.
