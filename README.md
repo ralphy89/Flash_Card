@@ -1,13 +1,12 @@
 "FlashCard" 
 
 ## GIF
-
-📝 `NOTE` Paste this template at the top of your existing `README.md` file from the last lab.
+<img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3.gif" width=200><br>
 
 ## Lab 4
 
 
-<img src="https://github.com/ralphy89/Flash_Card/blob/main/flash_card3.gif" width=200><br>
+
 
 
 ## Required
