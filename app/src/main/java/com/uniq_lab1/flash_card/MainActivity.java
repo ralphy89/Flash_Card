@@ -139,6 +139,11 @@ public class MainActivity extends AppCompatActivity {
                         flashCard_database.updateCard(card_to_edit);
                         flashCard_array.add(current_display_index, card_to_edit);
                         flashCard_array.remove(current_display_index + 1);
+                        countDownTimer.start();
+                    }
+                    else
+                    {
+                        countDownTimer.start();
                     }
                 }
         );
@@ -169,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                         answerText1.setText(answer2);
                         answerText2.setText(answer1);
                         answerText3.setText(answer3);
-
+                        countDownTimer.start();
 
                         if (
                                 (question != null && answer1 != null) && (answer2 != null && answer3 != null)
@@ -187,6 +192,10 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             Log.i("TAG", "Missing question or answer to input into database");
                         }
+                    }
+                    else
+                    {
+                        countDownTimer.start();
                     }
                 }
         );
@@ -320,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this, "Adding new Card ",
                     Toast.LENGTH_SHORT).show();
+            countDownTimer.cancel();
             answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
             answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
             answerText3.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
@@ -330,6 +340,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         edit_button.setOnClickListener(view -> {
+            countDownTimer.cancel();
             Toast.makeText(MainActivity.this, "Editing Card ",
                     Toast.LENGTH_SHORT).show();
             answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
@@ -351,6 +362,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         delete_button.setOnClickListener(view -> {
+            countDownTimer.cancel();
             Toast.makeText(this, "Deleting card ...", Toast.LENGTH_SHORT).show();
             Random random = new Random();
             int random_card;
@@ -389,6 +401,7 @@ public class MainActivity extends AppCompatActivity {
 
                 answerText3.setAnimation(rightInAnim);
                 answerText3.setText(flashCard_array.get(current_display_index).getWrongAnswer2());
+                countDownTimer.start();
             }
             answerText1.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
             answerText2.setBackgroundColor(ContextCompat.getColor(this, R.color.teal_100));
@@ -401,7 +414,6 @@ public class MainActivity extends AppCompatActivity {
             state += 1;
             if (flashCard_array.size() == 0) {
                 // return here, so that the rest of the code in this onClickListener doesn't execute
-                Log.i("TAG", "flashCard size is equal 0");
 
                 return;
             }

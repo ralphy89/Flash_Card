@@ -44,6 +44,7 @@ public class AddCardActivity extends AppCompatActivity {
         }
 
         cancel_img.setOnClickListener(view -> {
+
             finish();
             overridePendingTransition(R.anim.left_in, R.anim.right_out);
         });
